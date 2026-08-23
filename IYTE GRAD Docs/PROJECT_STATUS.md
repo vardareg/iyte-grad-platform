@@ -3,13 +3,14 @@
 | Field | Value |
 |---|---|
 | Status | Active implementation record |
-| Version | 1.1 |
+| Version | 1.2 |
 | Planning baseline accepted | 2026-08-11 |
-| Last updated | 2026-08-11 |
-| Current phase | Implementation — M0 |
-| Current milestone | M0 — Repository and walking skeleton |
+| Last updated | 2026-08-23 |
+| Current phase | Implementation — M1 ready to begin |
+| Current milestone | M1 — Plugin kernel and core contracts (`NOT STARTED`; next) |
 | Overall implementation status | `IN PROGRESS` |
 | Verified BUILD acceptance criteria | 0 of 11 |
+| Source governance | [`SOURCE_AUTHORITY.md`](SOURCE_AUTHORITY.md) |
 | Governing definition | `PROJECT_DEFINITION.md` |
 | Governing scope | `IMPLEMENTATION_SCOPE.md` |
 | Governing architecture | `CURRENT_ARCHITECTURE.md` version 1.6 and accepted `decisions/ADR-*.md` files |
@@ -26,6 +27,7 @@ This document is the evidence-backed planning and progress record for the projec
 
 This document does not redefine the project, scope, or architecture:
 
+- [`SOURCE_AUTHORITY.md`](SOURCE_AUTHORITY.md) governs canonical location, source ownership, and conflict handling.
 - `PROJECT_DEFINITION.md` governs the problem, contribution, boundary, and success concept.
 - `IMPLEMENTATION_SCOPE.md` governs BUILD, STRETCH, FUTURE, and OUT-OF-SCOPE classifications.
 - `CURRENT_ARCHITECTURE.md` and accepted ADRs govern intended design and rationale.
@@ -77,10 +79,10 @@ At the 2026-08-11 baseline inspection, the project workspace contained the three
 
 At that baseline, therefore:
 
-- implementation has not started;
-- all implementation milestones are `NOT STARTED`;
-- none of the 11 BUILD acceptance criteria is verified;
-- every architectural implementation claim remains unverified.
+- implementation had not started;
+- all implementation milestones were `NOT STARTED`;
+- none of the 11 BUILD acceptance criteria was verified;
+- every architectural implementation claim was unverified.
 
 This historical baseline is intentionally conservative. Later status updates must cite the exact evidence that changed a status.
 
@@ -95,11 +97,11 @@ The 2026-08-11 scaffold established:
 - a checked-in Maven 3.9.11 wrapper and npm lockfile;
 - a setup guide with exact start, test, health-check, and non-destructive shutdown commands.
 
-Executed evidence is recorded in [`evidence/M0-VERIFICATION.md`](evidence/M0-VERIFICATION.md). It proves backend packaging, the unit and database integration tests, migration application, PostGIS access, backend startup and health, frontend install/lint/test/build/start, and the Vite-to-Spring proxy path.
+Executed evidence is recorded in [`evidence/M0-VERIFICATION.md`](evidence/M0-VERIFICATION.md). On 2026-08-23, the full M0 sequence was reproduced from a fresh checkout of committed `main` at `07d32da9278947951be514d267b3c1c5325e68a6`. It proves Compose validation, clean-database migration application, PostGIS access, backend tests and startup, both HTTP status paths, frontend install/lint/test/build/start, the Vite-to-Spring proxy path, and isolated cleanup.
 
-M0 remains `IN PROGRESS` because the documented sequence has not yet been replayed from a committed clean checkout. No M1 domain contract or BUILD acceptance criterion is claimed by this foundation work.
+M0 is `VERIFIED`. No M1 domain contract or BUILD acceptance criterion is claimed by this foundation work; M1 remains `NOT STARTED` and is the next milestone.
 
-## 4. Current milestone: M0 — Repository and walking skeleton
+## 4. Completed milestone: M0 — Repository and walking skeleton
 
 ### 4.1 Goal
 
@@ -111,13 +113,13 @@ M0 must prove only that the application skeleton and required local infrastructu
 
 | Work item | Required outcome | Status |
 |---|---|---|
-| M0.1 Repository foundation | A Git repository with a coherent backend, frontend, infrastructure, and documentation layout | `VERIFIED` — repository and layout inspected 2026-08-11 |
-| M0.2 Backend skeleton | A Java 21/Spring Boot application starts and exposes a minimal health or smoke-test path | `VERIFIED` — application and two HTTP paths exercised 2026-08-11 |
-| M0.3 Frontend skeleton | A React/TypeScript application installs, builds, tests, and starts | `VERIFIED` — npm install, lint, test, build, and Vite start exercised 2026-08-11 |
-| M0.4 Database dependency | PostgreSQL/PostGIS starts through Docker Compose and is reachable by the backend | `VERIFIED` — Compose service health and backend access exercised 2026-08-11 |
-| M0.5 Migration foundation | The selected migration mechanism applies an initial controlled migration to a clean database | `VERIFIED` — Flyway V1 applied and queried 2026-08-11 |
-| M0.6 Test harness | Backend unit/integration and frontend test commands execute successfully | `VERIFIED` — 2 backend and 1 frontend tests passed 2026-08-11 |
-| M0.7 Reproducible startup | A short setup guide records prerequisites and exact commands for a clean checkout | `IN PROGRESS` — guide exists; clean-checkout replay is pending |
+| M0.1 Repository foundation | A Git repository with a coherent backend, frontend, infrastructure, and documentation layout | `VERIFIED` — committed layout reproduced from a fresh checkout on 2026-08-23 |
+| M0.2 Backend skeleton | A Java 21/Spring Boot application starts and exposes a minimal health or smoke-test path | `VERIFIED` — clean-checkout application start and both HTTP paths passed 2026-08-23 |
+| M0.3 Frontend skeleton | A React/TypeScript application installs, builds, tests, and starts | `VERIFIED` — clean-checkout install, lint, test, build, and Vite start passed 2026-08-23 |
+| M0.4 Database dependency | PostgreSQL/PostGIS starts through Docker Compose and is reachable by the backend | `VERIFIED` — isolated Compose health and backend access passed 2026-08-23 |
+| M0.5 Migration foundation | The selected migration mechanism applies an initial controlled migration to a clean database | `VERIFIED` — absent pre-run Flyway history followed by successful V1 recorded 2026-08-23 |
+| M0.6 Test harness | Backend unit/integration and frontend test commands execute successfully | `VERIFIED` — 2 backend and 1 frontend tests passed from the clean checkout 2026-08-23 |
+| M0.7 Reproducible startup | A short setup guide records prerequisites and exact commands for a clean checkout | `VERIFIED` — startup, proxy, and isolated cleanup replayed from committed `main` 2026-08-23 |
 
 ### 4.3 M0 exit gate
 
@@ -130,7 +132,7 @@ M0 becomes `VERIFIED` only when repository evidence demonstrates all of the foll
 5. The documented startup sequence is repeatable.
 6. No BUILD domain feature is falsely reported as implemented.
 
-The immediate next action is to create the first intentional commit and replay the documented sequence from a clean checkout. Do not begin M1 until that final M0 evidence is recorded or a concrete dependency requires a narrowly documented overlap.
+All six exit conditions are satisfied by the 2026-08-23 clean-checkout record at `07d32da9278947951be514d267b3c1c5325e68a6`. M0 is closed, and no M1 implementation was performed during closeout.
 
 ## 5. Ordered implementation milestones
 
@@ -138,8 +140,8 @@ Milestones are ordered by dependency and demonstration risk. A milestone may beg
 
 | Milestone | Required outcome | Principal exit evidence | Status |
 |---|---|---|---|
-| M0 — Repository and walking skeleton | Approved runtime stack starts, builds, migrates, and runs its smoke tests reproducibly | Clean-checkout startup record; backend and frontend test results; database migration result | `IN PROGRESS` — clean-checkout replay pending |
-| M1 — Plugin kernel and core contracts | Plugin categories, descriptors, lifecycle, health, configuration, typed ports, logical data types, capability catalogue, and dependency-injected registry exist without concrete-plugin branching | Contract and registry unit tests; startup rejection tests; lifecycle tests; test-only plugin discovery and invocation | `NOT STARTED` |
+| M0 — Repository and walking skeleton | Approved runtime stack starts, builds, migrates, and runs its smoke tests reproducibly | Clean-checkout startup record; backend and frontend test results; database migration result | `VERIFIED` — clean-checkout replay passed 2026-08-23 at `07d32da9278947951be514d267b3c1c5325e68a6` |
+| M1 — Plugin kernel and core contracts | Plugin categories, descriptors, lifecycle, health, configuration, typed ports, logical data types, capability catalogue, and dependency-injected registry exist without concrete-plugin branching | Contract and registry unit tests; startup rejection tests; lifecycle tests; test-only plugin discovery and invocation | `NOT STARTED` — next milestone |
 | M2 — Artifact, catalogue, and ingestion foundation | Opaque immutable references, metadata persistence, local storage abstraction, staged publication, integrity checks, GeoTIFF ingestion, and preview foundation work | Artifact and persistence integration tests; path-safety and tamper tests; successful ingestion of a controlled GeoTIFF fixture | `NOT STARTED` |
 | M3 — Pipeline definitions and validation | Persistent revisions, typed DAG construction, external input/result bindings, deterministic validation, and pre-execution rejection work | Persistence tests; linear/fan-out/fan-in graph tests; invalid-edge, cycle, parameter, missing-input, and missing-plugin tests | `NOT STARTED` |
 | M4 — Resolution and execution subsystem | Immutable snapshot binding, engine resolution, bounded execution, persisted job/stage states, polling, fail-fast propagation, and restart reconciliation work | Resolution, transition, transaction, admission, polling, failure, concurrency-bound, and restart tests | `NOT STARTED` |
@@ -185,9 +187,9 @@ Planned tests are not evidence until executed. A passing isolated unit test does
 
 When a milestone becomes `VERIFIED`, update this document with its completion date and evidence references. When later evidence invalidates a claim, return it to `IN PROGRESS` or `BLOCKED` and record the regression.
 
-## 8. Implementation-level choices to settle during delivery
+## 8. Implementation-level choices tracked during delivery
 
-The architecture intentionally leaves the following choices open. They should be resolved in the named milestone and do not require a new ADR unless they change an accepted boundary or public contract.
+The architecture leaves the following choices to delivery. The M0 stack choices are resolved by the repository evidence in section 3.3; later choices remain open. These choices do not require a new ADR unless they change an accepted boundary or public contract.
 
 | Choice | Resolve by | Constraint |
 |---|---|---|
@@ -211,7 +213,7 @@ The architecture intentionally leaves the following choices open. They should be
 | Integration is postponed until the final stage | Individually passing modules may not form a complete demonstration | Require a backend vertical slice in M5 before building the final web path |
 | Documentation gets ahead of executable evidence | The report overstates implementation | Apply the status vocabulary and evidence rules in this document |
 
-No implementation blocker is currently recorded. M0 closeout awaits a clean-checkout replay after the first intentional commit; this is pending verification, not a blocker.
+No implementation blocker is currently recorded. M0 is verified; M1 is the next milestone and remains `NOT STARTED`.
 
 ## 10. Scope gate
 
@@ -224,9 +226,7 @@ No implementation blocker is currently recorded. M0 closeout awaits a clean-chec
 
 ## 11. Current next action
 
-Create the first intentional repository commit, obtain a clean checkout, and repeat the documented M0 sequence. Record the commit identifier and clean-checkout results in `evidence/M0-VERIFICATION.md`; if every M0 exit condition passes, mark M0 `VERIFIED`.
-
-Do not begin M1 domain contracts until the M0 exit gate is reproducibly satisfied or a concrete dependency requires a narrowly documented overlap.
+Proceed to M1 — Plugin kernel and core contracts — through a bounded implementation plan tied to the M1 exit evidence. No M1 domain implementation was started as part of this governance and M0-closeout task.
 
 ## 12. Change history
 
@@ -234,3 +234,4 @@ Do not begin M1 domain contracts until the M0 exit gate is reproducibly satisfie
 |---|---|---|---|
 | 1.0 | 2026-08-11 | Accepted | Established the pre-implementation baseline, evidence model, M0–M7 milestone sequence, BUILD checklist, risks, scope gate, and M0 as the next action. |
 | 1.1 | 2026-08-11 | Recorded | Added evidence-backed M0 scaffold progress, resolved implementation-level stack choices, retained all BUILD criteria as unverified, and made clean-checkout replay the next action. |
+| 1.2 | 2026-08-23 | Recorded | Reconciled the intentional initial commit, recorded a complete clean-checkout replay at `07d32da9278947951be514d267b3c1c5325e68a6`, marked M0 verified, made M1 the next milestone, and retained all 11 BUILD criteria as unverified. |

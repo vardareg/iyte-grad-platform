@@ -8,8 +8,9 @@ describe('App', () => {
     const markup = renderToStaticMarkup(<App />)
 
     expect(markup).toContain('Remote-sensing workflows')
+    expect(markup).toContain('Foundation milestone')
     expect(markup).toContain('M0 walking skeleton')
     expect(markup).toContain('Domain features begin in M1')
+    expect(markup).not.toContain('Current milestone')
   })
 })
-

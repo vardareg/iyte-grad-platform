@@ -85,7 +85,7 @@ function App() {
         <div className="milestone-card">
           <span className="milestone-card__index">M0</span>
           <div>
-            <p className="milestone-card__label">Current milestone</p>
+            <p className="milestone-card__label">Foundation milestone</p>
             <h2>M0 walking skeleton</h2>
             <p>Application, database, migration, and test foundations only.</p>
           </div>
@@ -122,4 +122,3 @@ function App() {
 }
 
 export default App
-

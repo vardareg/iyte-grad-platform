@@ -14,7 +14,7 @@ A possible high-performance C/C++ engine for a separate Boğaziçi thesis is out
 
 ## Ground work in project sources
 
-Before architecture, planning, status, or code work, inspect the relevant available project files. Prefer current sources over remembered conversation details. The user's latest explicit decision overrides older material.
+Apply the GitHub-first governance policy in [`SOURCE_AUTHORITY.md`](SOURCE_AUTHORITY.md). When GitHub access is available, inspect the relevant current files from `vardareg/iyte-grad-platform` on `main` before architecture, planning, status, review, or implementation work. Prefer those files over uploaded ChatGPT Project Source copies and remembered conversation details. The latest explicitly accepted project decision in the canonical sources overrides older documentation within its authority boundary.
 
 Different sources answer different questions:
 
@@ -25,7 +25,7 @@ Different sources answer different questions:
 - Repository and tests: actual implementation and verification evidence.
 - PROJECT_STATUS.md: planning aid whose material claims must be checked against the repository.
 
-Documents describe intent unless backed by verified implementation evidence. Never call a planned component implemented. If sources conflict, identify the conflict and its consequence; do not silently reconcile it.
+Repository code, executable tests, and repeatable repository evidence govern implementation claims. Documents describe intent unless backed by that evidence; never infer that a documented architecture component is implemented. If a ChatGPT Project Source is stale or any sources conflict, identify the conflict and its consequence explicitly; do not silently reconcile it.
 
 Reflect accepted ADRs in CURRENT_ARCHITECTURE.md. If they disagree, report documentation drift rather than treating an obsolete detail as current.
 
