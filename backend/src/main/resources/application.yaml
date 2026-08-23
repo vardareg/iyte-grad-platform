@@ -1,0 +1,23 @@
+spring:
+  application:
+    name: iyte-grad-platform
+  datasource:
+    url: ${IYTE_DB_URL:jdbc:postgresql://localhost:5432/iyte_grad}
+    username: ${IYTE_DB_USER:iyte}
+    password: ${IYTE_DB_PASSWORD:iyte_dev_password}
+  flyway:
+    enabled: true
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info
+  info:
+    env:
+      enabled: true
+
+info:
+  application:
+    name: ${spring.application.name}
+    phase: M0 walking skeleton
